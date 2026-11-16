@@ -8,8 +8,11 @@ Public registration creates buyer accounts only; roles are never accepted from
 registration requests. Passwords are stored as bcrypt hashes and successful
 registration or login returns a 24-hour JWT.
 
-1. Copy `.env.example` to `.env` and set `DATABASE_URL`. Generate a random
-   32-character secret with
+1. Copy `.env.example` to `.env` and set `DATABASE_URL` to your PostgreSQL
+   connection string (for example,
+   `postgresql://<user>:<password>@<host>/<database>?sslmode=require`). Keep
+   this credential in `.env`; do not commit or paste it into source files.
+   Generate a random 32-character secret with
    `node -e "console.log(require('node:crypto').randomBytes(24).toString('base64url'))"`
    and set the output as `JWT_SECRET` in `.env`.
 2. Create the database and apply `migrations/001_create_users.sql`.
